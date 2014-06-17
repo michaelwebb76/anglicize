@@ -1,0 +1,20 @@
+= Anglicize
+
+Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spelling at [http://www.tysto.com/uk-us-spelling-list.html].
+
+== Installation
+
+Add this to your Gemfile and run the +bundle+ command.
+
+  gem "anglicize
+
+  rails plugin install git://github.com/moggyboy/anglicize.git
+
+
+== Getting Started
+
+The gem adds four methods to the String object:
+* anglicize - convert to English spelling
+* has_alternate_english_spelling? - returns true if English spelling of string is different
+* americanize - convert to American spelling
+* has_alternate_american_spelling? - returns true if American spelling of string is different
