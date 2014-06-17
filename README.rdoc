@@ -1,12 +1,14 @@
 = Anglicize
 
-Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spelling at [http://www.tysto.com/uk-us-spelling-list.html].
+Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spellings at [http://www.tysto.com/uk-us-spelling-list.html].
 
 == Installation
 
 Add this to your Gemfile and run the +bundle+ command.
 
-  gem "anglicize
+  gem "anglicize"
+
+Or, install as a plugin:
 
   rails plugin install git://github.com/moggyboy/anglicize.git
 
