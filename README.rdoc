@@ -1,5 +1,5 @@
 = Anglicize
-[![Gem Version](https://badge.fury.io/rb/anglicize.svg)](http://badge.fury.io/rb/anglicize)
+{<img src="https://badge.fury.io/rb/anglicize.svg" alt="Gem Version" />}[http://badge.fury.io/rb/anglicize]
 
 Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spellings at [http://www.tysto.com/uk-us-spelling-list.html].
 
