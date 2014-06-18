@@ -3,6 +3,12 @@
 
 Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spellings at [http://www.tysto.com/uk-us-spelling-list.html].
 
+For example:
+"Blue Is The Warmest Color".anglicize == "Blue Is The Warmest Colour"
+"Blue Is The Warmest Colour".americanize == "Blue Is The Warmest Color"
+
+The methods provided will retain the case of the original string.
+
 == Installation
 
 Add this to your Gemfile and run the +bundle+ command.
@@ -16,7 +22,7 @@ Or, install as a plugin:
 
 == Getting Started
 
-The gem adds second methods to the String object:
+The gem adds the following methods to the String object:
 * anglicize - return a copy of the string converted to English spelling
 * anglicize! - convert the string in-place to English spelling
 * has_alternate_english_spelling? - returns true if English spelling of string is different
