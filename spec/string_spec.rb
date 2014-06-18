@@ -33,6 +33,14 @@ describe String do
     end
   end
 
+  describe ".anglicize!" do
+    it "should change the string in place" do
+      value = "Blue Is Warmest Color"
+      value.anglicize!
+      expect(value).to eq "Blue Is Warmest Colour"
+    end
+  end
+
   describe ".americanize" do
     it "works with replaceable word in lower case" do
       expect("blue is warmest colour".americanize).to eq "blue is warmest color"
@@ -62,6 +70,14 @@ describe String do
       expected = File.read(File.join(dir, "great_expectations_american.txt"))
       expect(source.americanize).to eq expected
       expect(Time.now).to be < time_then + 1
+    end
+  end
+
+  describe ".americanize!" do
+    it "should change the string in place" do
+      value = "Blue Is Warmest Colour"
+      value.americanize!
+      expect(value).to eq "Blue Is Warmest Color"
     end
   end
 

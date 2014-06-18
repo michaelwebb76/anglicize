@@ -16,8 +16,11 @@ Or, install as a plugin:
 
 == Getting Started
 
-The gem adds four methods to the String object:
-* anglicize - convert to English spelling
+The gem adds second methods to the String object:
+* anglicize - return a copy of the string converted to English spelling
+* anglicize! - convert the string in-place to English spelling
 * has_alternate_english_spelling? - returns true if English spelling of string is different
-* americanize - convert to American spelling
+* americanize - return a copy of the string converted to American spelling
+* americanize! - convert the string in-place to American spelling
 * has_alternate_american_spelling? - returns true if American spelling of string is different
+* copy_case

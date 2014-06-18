@@ -10,12 +10,20 @@ class String
     result
   end
 
+  def anglicize!
+    self.replace(self.anglicize)
+  end
+
   def americanize
     result = self.dup
     scan(WORD_RE).uniq.each do |word|
       result.gsub!(/\b#{word}\b/, get_americanized_word(word))
     end
     result
+  end
+
+  def americanize!
+    self.replace(self.americanize)
   end
 
   def has_alternate_english_spelling?
