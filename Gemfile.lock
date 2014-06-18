@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    anglicize (0.0.1)
+    anglicize (0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -21,4 +21,4 @@ PLATFORMS
 
 DEPENDENCIES
   anglicize!
-  rspec
+  rspec (~> 2)
