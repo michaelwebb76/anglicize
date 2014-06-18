@@ -1,0 +1,3 @@
+lib/anglicize.rb 06560c8a104961e6a6af8f6959beba0218ab527c
+lib/anglicize/string.rb a136698e104337d880df30b3872f6d3869f7fcdb
+lib/anglicize/version.rb 8fa1fa65b5b72af22173200f489e8a11b315c20b
