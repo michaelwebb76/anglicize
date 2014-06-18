@@ -3,11 +3,19 @@ require 'yaml'
 # Extensions for string class.
 class String
   def anglicize
-    split.map{|token| get_anglicized_word(token) }.join(" ")
+    result = self.dup
+    scan(WORD_RE).uniq.each do |word|
+      result.gsub!(/\b#{word}\b/, get_anglicized_word(word))
+    end
+    result
   end
 
   def americanize
-    split.map{|token| get_americanized_word(token) }.join(" ")
+    result = self.dup
+    scan(WORD_RE).uniq.each do |word|
+      result.gsub!(/\b#{word}\b/, get_americanized_word(word))
+    end
+    result
   end
 
   def has_alternate_english_spelling?
@@ -19,16 +27,23 @@ class String
   end
 
   def copy_case(word)
-    if word == word.capitalize
-      capitalize
-    elsif word == word.upcase
-      upcase
+    result = ""
+    if word.upcase == word
+      result = self.upcase
+    elsif word.downcase == word
+      result = self.downcase
     else
-      downcase
+      self.chars.each_with_index do |char, index|
+        word_char = word[index] || "a"
+        result << (word_char.upcase == word_char ? char.upcase : char.downcase)
+      end
     end
+    result
   end
 
   private
+
+  WORD_RE = /\b[a-zA-Z]+\b/
 
   def get_anglicized_word(word)
     @@american_to_english ||= load_american_to_english

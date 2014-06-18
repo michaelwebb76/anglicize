@@ -17,6 +17,20 @@ describe String do
     it "works with replaceable word in mixed case" do
       expect("Blue Is Warmest Color".anglicize).to eq "Blue Is Warmest Colour"
     end
+
+    it "works with punctuation" do
+      expected =  "Blue Is Warmest Colour! For Aeons!"
+      expect("Blue Is Warmest Color! For Eons!".anglicize).to eq expected
+    end
+
+    it "is performant with a large amount of text" do
+      time_then = Time.now
+      dir = File.dirname(__FILE__)
+      source = File.read(File.join(dir, "great_expectations_american.txt"))
+      expected = File.read(File.join(dir, "great_expectations_english.txt"))
+      expect(source.anglicize).to eq expected
+      expect(Time.now).to be < time_then + 1
+    end
   end
 
   describe ".americanize" do
@@ -34,6 +48,20 @@ describe String do
 
     it "works with replaceable word in mixed case" do
       expect("Blue Is Warmest Colour".americanize).to eq "Blue Is Warmest Color"
+    end
+
+    it "works with punctuation" do
+      expected =  "Blue Is Warmest Color! For Eons!"
+      expect("Blue Is Warmest Colour! For Aeons!".americanize).to eq expected
+    end
+
+    it "is performant with a large amount of text" do
+      time_then = Time.now
+      dir = File.dirname(__FILE__)
+      source = File.read(File.join(dir, "great_expectations_english.txt"))
+      expected = File.read(File.join(dir, "great_expectations_american.txt"))
+      expect(source.americanize).to eq expected
+      expect(Time.now).to be < time_then + 1
     end
   end
 
