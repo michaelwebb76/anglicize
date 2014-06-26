@@ -4,11 +4,9 @@ require 'yaml'
 class String
   # @return [String] a copy of the string converted into English spelling.
   def anglicize
-    result = self.dup
-    scan(WORD_RE).uniq.each do |word|
-      result.gsub!(/\b#{word}\b/, get_anglicized_word(word))
-    end
-    result
+    # Load american to english conversion hash if not already loaded
+    @@american_to_english ||= load_american_to_english
+    convert_all_words(@@american_to_english)
   end
 
   # Converts the string into English spelling.
@@ -19,11 +17,9 @@ class String
 
   # @return [String] a copy of the string converted into American spelling.
   def americanize
-    result = self.dup
-    scan(WORD_RE).uniq.each do |word|
-      result.gsub!(/\b#{word}\b/, get_americanized_word(word))
-    end
-    result
+    # Load english to american hash if not already loaded
+    @@english_to_american ||= load_english_to_american
+    convert_all_words(@@english_to_american)
   end
 
   # Converts the string into American spelling.
@@ -46,9 +42,10 @@ class String
   # @return [String] a copy of the string with the same case as the template.
   def copy_case(word)
     result = ""
-    if word.upcase == word
+    case word
+    when word.upcase
       result = self.upcase
-    elsif word.downcase == word
+    when word.downcase
       result = self.downcase
     else
       self.chars.each_with_index do |char, index|
@@ -71,18 +68,18 @@ class String
   # A regular expression for identifying words
   WORD_RE = /\b[a-zA-Z]+\b/
 
-  def get_anglicized_word(word)
-    # Load american to english conversion hash if not already loaded
-    @@american_to_english ||= load_american_to_english
-    key = word.downcase
-    (@@american_to_english[key] || word).copy_case(word)
+  def convert_all_words(conversion_hash)
+    result = self.dup
+    scan(WORD_RE).uniq.each do |word|
+      replacement = get_word_from_conversion_hash(conversion_hash, word)
+      result.gsub!(/\b#{word}\b/, replacement)
+    end
+    result
   end
 
-  def get_americanized_word(word)
-    # Load english to american hash if not already loaded
-    @@english_to_american ||= load_english_to_american
+  def get_word_from_conversion_hash(conversion_hash, word)
     key = word.downcase
-    (@@english_to_american[key] || word).copy_case(word)
+    (conversion_hash[key] || word).copy_case(word)
   end
 
   # Load alternate spellings if not already loaded and insert values and keys

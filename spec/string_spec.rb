@@ -18,6 +18,10 @@ describe String do
       expect("Blue Is Warmest Color".anglicize).to eq "Blue Is Warmest Colour"
     end
 
+    it "works with same word in different case" do
+      expect("Color COLOR color".anglicize).to eq "Colour COLOUR colour"
+    end
+
     it "works with punctuation" do
       expected =  "Blue Is Warmest Colour! For Aeons!"
       expect("Blue Is Warmest Color! For Eons!".anglicize).to eq expected
@@ -56,6 +60,10 @@ describe String do
 
     it "works with replaceable word in mixed case" do
       expect("Blue Is Warmest Colour".americanize).to eq "Blue Is Warmest Color"
+    end
+
+    it "works with same word in different case" do
+      expect("Colour COLOUR colour".americanize).to eq "Color COLOR color"
     end
 
     it "works with punctuation" do
