@@ -4,8 +4,8 @@
 Anglicize is a simple gem that converts strings between American and English spellings, based on the list of alternate spellings at [http://www.tysto.com/uk-us-spelling-list.html].
 
 For example:
-"Blue Is The Warmest Color".anglicize == "Blue Is The Warmest Colour"
-"Blue Is The Warmest Colour".americanize == "Blue Is The Warmest Color"
+* "Blue Is The Warmest Color".anglicize == "Blue Is The Warmest Colour"
+* "Blue Is The Warmest Colour".americanize == "Blue Is The Warmest Color"
 
 The methods provided will retain the case of the original string.
 
@@ -14,10 +14,6 @@ The methods provided will retain the case of the original string.
 Add this to your Gemfile and run the +bundle+ command.
 
   gem "anglicize"
-
-Or, install as a plugin:
-
-  rails plugin install git://github.com/moggyboy/anglicize.git
 
 
 == Getting Started
@@ -29,4 +25,5 @@ The gem adds the following methods to the String object:
 * americanize - return a copy of the string converted to American spelling
 * americanize! - convert the string in-place to American spelling
 * has_alternate_american_spelling? - returns true if American spelling of string is different
-* copy_case
+* copy_case - applies the case of the string parameter and returns the resultant string
+* copy_case! - changes the case of the string to the case of the string parameter
